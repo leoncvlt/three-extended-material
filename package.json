@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "start": "vite ./examples",
-    "build": "vite build ./examples"
+    "build": "vite build ./examples",
+    "test": "echo \"No test specified\""
   },
   "devDependencies": {
     "three": "^0.136.0",
