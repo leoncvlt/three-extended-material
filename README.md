@@ -1,9 +1,13 @@
 # three-extended-material
 
-Easily extend native three.js materials with modular and composable units.
+Easily extend native three.js materials with modular and composable shader units and effects.
 
 ## Usage
+```
+npm install three-extended-material
+```
 
+Then, create your extended material:
 ```js
 import { ExtendedMaterial } from "three-extended-material"
 
