@@ -1,0 +1,21 @@
+{
+  "name": "three-extended-material",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "vite ./examples",
+    "build": "vite build ./examples"
+  },
+  "devDependencies": {
+    "three": "^0.136.0",
+    "vite": "^2.7.2",
+    "lil-gui": "^0.16.0",
+    "tweakpane": "^3.0.7"
+  },
+  "files": [
+    "src"
+  ],
+  "main": "./src/ExtendedMaterial.js",
+  "exports": {
+    ".": "./src/ExtendedMaterial.js"
+  }
+}
