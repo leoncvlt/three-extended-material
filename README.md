@@ -104,5 +104,5 @@ box.material.checkersSize: 10.0; //... or use the property accessor to set / get
 
 ## Demos
 
-- [three-extended-material/simple]() - A demo of the checkerboard setup illustrated above
-- [three-extended-material/complex]() - A more complex example with multiple extensions, editing properties in real-time and some interesting effects.
+- [three-extended-material/simple](https://leoncvlt.github.io/three-extended-material/simple/) - A demo of the checkerboard setup illustrated above
+- [three-extended-material/complex](https://leoncvlt.github.io/three-extended-material/complex/) - A more complex example with multiple extensions, editing properties in real-time and some interesting effects.
