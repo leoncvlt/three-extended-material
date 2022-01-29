@@ -5,7 +5,7 @@
     "start": "vite ./examples",
     "build": "vite build ./examples",
     "test": "echo \"No test specified\"",
-    "publish": "np --no-tests --no-2fa"
+    "release": "np --no-tests --no-2fa"
   },
   "devDependencies": {
     "three": "^0.136.0",
