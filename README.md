@@ -2,6 +2,8 @@
 
 Easily extend native three.js materials with modular and composable shader units and effects.
 
+![image](https://user-images.githubusercontent.com/4929974/151654060-d44e7859-f966-4b0e-834e-0f7b13b60e21.png)
+
 ## Usage
 ```
 npm install three-extended-material
@@ -46,15 +48,15 @@ const extension = {
                                         // shader code, and returns the modified cone
 };
 ```
-The `ExtendedMaterial` will provide property accessor to all uniforms, so you can use `extension.myUniform` to set or get the value. This means that when using multiple extension, each uniform name should be unique.
-
 The name of each extension is hashed alongside the name of the original material in order to generate a unique [shader program cache key](https://threejs.org/docs/?q=materi#api/en/materials/Material.customProgramCacheKey) for that combination.
+
+The `ExtendedMaterial` will provide property accessors to all uniforms, so you can use `extension.myUniform` to set or get the value. This means that when using multiple extension, each uniform name should be unique.
 
 The `vertexShader` and `fragmentShader` functions provide you with the original material shaders code, and should return the modified shader code to replace the original shaders code with. A common pattern is to prepend the uniforms definition to the code, and then run a string replace function to add extra shader code in specific places.
 
 Note that when chaining multiple extensions, the shader code is modified for each extension, and passed to the next one - so be careful about not removing pieces of shader which might be queried by later extensions.
 
-You can also pass an object with the following options to the ExtendedMaterial constructor as the last argument:
+You can also pass an options object with any of the following parameters to the ExtendedMaterial constructor as the last argument:
 ```js
 {
   debug: false,           // if true, prints the material's shader code after being patched
@@ -74,7 +76,7 @@ const checkerBoardExtension = {
   uniforms: {
     checkersSize: 5.0,
   },
-  // no defines vertex shader modifications needed
+  // no defines or vertex shader modifications needed
   // in this extension, so we can leave them out
   fragmentShader: (shader) => {
     shader = `
@@ -109,4 +111,4 @@ box.material.checkersSize: 10.0; //... or use the property accessor to set / get
 ## Demos
 
 - [three-extended-material/simple](https://leoncvlt.github.io/three-extended-material/simple/) - A demo of the checkerboard setup illustrated above
-- [three-extended-material/complex](https://leoncvlt.github.io/three-extended-material/complex/) - A more complex example with multiple extensions, editing properties in real-time and some interesting effects.
+- [three-extended-material/complex](https://leoncvlt.github.io/three-extended-material/complex/) - A more complex example with multiple toggleable extensions, editing properties in real-time and some interesting effects.
