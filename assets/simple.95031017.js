@@ -1,4 +1,4 @@
-import{O as m,E as h}from"./ExtendedMaterial.f8a02f57.js";import{W as g,S as u,P as f,C as p,M as w,a as x,B as S,H as b}from"./three.45ac66c1.js";const t=new g({canvas:document.querySelector("canvas"),antialias:!0});t.setPixelRatio(window.devicePixelRatio);t.shadowMap.enabled=!0;const o=new u,n=new f;n.position.z=3;const i=new p,c=new m(n,t.domElement);c.enableDamping=!0;const k={name:"checkerboard",uniforms:{checkersSize:5},fragmentShader:e=>(e=`
+import{O as m,E as h}from"./ExtendedMaterial.c0ad3e56.js";import{W as g,S as u,P as p,C as f,M as w,a as x,B as S,H as b}from"./three.45ac66c1.js";const t=new g({canvas:document.querySelector("canvas"),antialias:!0});t.setPixelRatio(window.devicePixelRatio);t.shadowMap.enabled=!0;const o=new u,n=new p;n.position.z=3;const i=new f,c=new m(n,t.domElement);c.enableDamping=!0;const k={name:"checkerboard",uniforms:{checkersSize:5},fragmentShader:e=>(e=`
       uniform float checkersSize;
       ${e.replace("#include <output_fragment>",`
         vec2 pos = floor(gl_FragCoord.xy / checkersSize);
