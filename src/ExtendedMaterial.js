@@ -16,7 +16,7 @@ export function ExtendedMaterial(
     throw "Uncaught TypeError: Class constructor ExtendedMaterial cannot be invoked without 'new'";
   }
 
-  class ExtendedMaterial extends SuperMaterial {
+  class _ExtendedMaterial extends SuperMaterial {
     constructor(props = {}) {
       super();
 
@@ -105,5 +105,5 @@ export function ExtendedMaterial(
     }
   }
 
-  return new ExtendedMaterial(properties);
+  return new _ExtendedMaterial(properties);
 }
