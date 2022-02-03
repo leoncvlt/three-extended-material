@@ -112,3 +112,6 @@ box.material.checkersSize: 10.0; //... or use the property accessor to set / get
 
 - [three-extended-material/simple](https://leoncvlt.github.io/three-extended-material/simple/) - A demo of the checkerboard setup illustrated above
 - [three-extended-material/complex](https://leoncvlt.github.io/three-extended-material/complex/) - A more complex example with multiple toggleable extensions, editing properties in real-time and some interesting effects.
+
+## Support [![Buy me a coffee](https://img.shields.io/badge/-buy%20me%20a%20coffee-lightgrey?style=flat&logo=buy-me-a-coffee&color=FF813F&logoColor=white "Buy me a coffee")](https://www.buymeacoffee.com/leoncvlt)
+If this tool has proven useful to you, consider [buying me a coffee](https://www.buymeacoffee.com/leoncvlt) to support development of this and [many other projects](https://github.com/leoncvlt?tab=repositories).
