@@ -3,9 +3,6 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   base: "/three-extended-material/",
-  server: {
-    open: true,
-  },
   build: {
     outDir: "./dist",
     emptyOutDir: true,

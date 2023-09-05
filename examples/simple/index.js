@@ -36,13 +36,13 @@ const checkerBoardExtension = {
     shader = `
       uniform float checkersSize;
       ${shader.replace(
-        "#include <output_fragment>",
+        "#include <opaque_fragment>",
         /*glsl*/ `
         vec2 pos = floor(gl_FragCoord.xy / checkersSize);
         float pattern = mod(pos.x + mod(pos.y, 2.0), 2.0);
   
         outgoingLight = outgoingLight * pattern;
-        #include <output_fragment>
+        #include <opaque_fragment>
         `
       )}
     `;

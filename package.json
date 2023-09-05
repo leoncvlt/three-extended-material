@@ -8,10 +8,9 @@
     "release": "np --no-tests --no-2fa"
   },
   "devDependencies": {
-    "three": "^0.136.0",
-    "vite": "^2.7.2",
-    "lil-gui": "^0.16.0",
-    "tweakpane": "^3.0.7"
+    "lil-gui": "^0.18.2",
+    "three": "^0.156.1",
+    "vite": "^4.4.9"
   },
   "files": [
     "src"
