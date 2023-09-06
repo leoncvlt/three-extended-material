@@ -1,6 +1,6 @@
 {
   "name": "three-extended-material",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "scripts": {
     "start": "vite ./examples",
     "build": "vite build ./examples",
