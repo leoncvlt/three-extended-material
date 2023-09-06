@@ -1,6 +1,6 @@
 # three-extended-material
 
-Easily extend native three.js materials with modular and composable shader units and effects.
+Easily extend native three.js materials with modular and composable shader units and effects, available as a vanilla or React component.
 
 ![image](https://user-images.githubusercontent.com/4929974/151654060-d44e7859-f966-4b0e-834e-0f7b13b60e21.png)
 
@@ -112,7 +112,7 @@ box.material.checkersSize: 10.0; //... or use the property accessor to set / get
 
 `ExtendedMaterial` is also exported as a `react-three-fiber`-friendly component to be used in `React` projects:
 
-```
+```jsx
 import { ExtendedMaterial } from "three-extended-material/react"
 import { MeshStandardMaterial } from 'three';
 
