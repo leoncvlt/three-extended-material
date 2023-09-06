@@ -1,6 +1,6 @@
 {
   "name": "three-extended-material",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "scripts": {
     "start": "vite ./examples",
     "build": "vite build ./examples",
@@ -8,16 +8,23 @@
     "release": "np --no-tests --no-2fa"
   },
   "devDependencies": {
-    "three": "^0.136.0",
-    "vite": "^2.7.2",
-    "lil-gui": "^0.16.0",
-    "tweakpane": "^3.0.7"
+    "@react-three/fiber": "^8.14.1",
+    "@vitejs/plugin-react": "^4.0.4",
+    "lil-gui": "^0.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.156.1",
+    "vite": "^4.4.9"
+  },
+  "engines": {
+    "node": "*"
   },
   "files": [
     "src"
   ],
   "main": "./src/ExtendedMaterial.js",
   "exports": {
-    ".": "./src/ExtendedMaterial.js"
+    ".": "./src/ExtendedMaterial.js",
+    "./react": "./src/ExtendedMaterial.react.jsx"
   }
 }

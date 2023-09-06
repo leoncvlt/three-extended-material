@@ -1,6 +1,6 @@
 # three-extended-material
 
-Easily extend native three.js materials with modular and composable shader units and effects.
+Easily extend native three.js materials with modular and composable shader units and effects, available as a vanilla or React component.
 
 ![image](https://user-images.githubusercontent.com/4929974/151654060-d44e7859-f966-4b0e-834e-0f7b13b60e21.png)
 
@@ -41,18 +41,18 @@ const extension = {
 
   defines: {},      // defines to pass to the materials, in a { define: 1 or 0 } format.
 
-  vertexShader: (shader) => shader,     // a function which takes the original vertex
-                                        // shader code, and returns the modified cone
+  vertexShader: (shader, type) => shader,    // a function which takes the original vertex
+                                            // shader code, and returns the modified cone
 
-  fragmentShader: (shader) => shader,   // a function which takes the original fragment
-                                        // shader code, and returns the modified cone
+  fragmentShader: (shader, type) => shader,   // a function which takes the original fragment
+                                              // shader code, and returns the modified cone
 };
 ```
 The name of each extension is hashed alongside the name of the original material in order to generate a unique [shader program cache key](https://threejs.org/docs/?q=materi#api/en/materials/Material.customProgramCacheKey) for that combination.
 
 The `ExtendedMaterial` will provide property accessors to all uniforms, so you can use `extension.myUniform` to set or get the value. This means that when using multiple extension, each uniform name should be unique.
 
-The `vertexShader` and `fragmentShader` functions provide you with the original material shaders code, and should return the modified shader code to replace the original shaders code with. A common pattern is to prepend the uniforms definition to the code, and then run a string replace function to add extra shader code in specific places.
+The `vertexShader` and `fragmentShader` functions provide you with the original material shaders code, and should return the modified shader code to replace the original shaders code with. A common pattern is to prepend the uniforms definition to the code, and then run a string replace function to add extra shader code in specific places. The second argument `type` will be the type of the shader, and can be useful to support multiple SuperMaterials at once, by monkey-patch specific bits of thhe shader if the `type` is of `MeshBasicMaterial`, some other for `MeshPhysicalMaterial`, and so on.
 
 Note that when chaining multiple extensions, the shader code is modified for each extension, and passed to the next one - so be careful about not removing pieces of shader which might be queried by later extensions.
 
@@ -78,12 +78,12 @@ const checkerBoardExtension = {
   },
   // no defines or vertex shader modifications needed
   // in this extension, so we can leave them out
-  fragmentShader: (shader) => {
+  fragmentShader: (shader, type) => {
     shader = `
       uniform float checkersSize;
       ${shader.replace(
-        "#include <output_fragment>",
-        // here we inject the checkerboard logic right before the <output_fragment>,
+        "#include <opaque_fragment>",
+        // here we inject the checkerboard logic right before the <opaque_fragment>,
         // where gl_FragColor is set according to the lighting calculation
         // https://github.com/mrdoob/three.js/blob/master/src/renderers/shaders/ShaderChunk/output_fragment.glsl.js
         `
@@ -91,7 +91,7 @@ const checkerBoardExtension = {
         float pattern = mod(pos.x + mod(pos.y, 2.0), 2.0);
   
         outgoingLight = outgoingLight * pattern;
-        #include <output_fragment>
+        #include <opaque_fragment>
         `
       )}
     `;
@@ -108,10 +108,35 @@ const box = new Mesh(new BoxGeometry(), material);
 box.material.checkersSize: 10.0; //... or use the property accessor to set / get its value
 ```
 
+## React
+
+`ExtendedMaterial` is also exported as a `react-three-fiber`-friendly component to be used in `React` projects:
+
+```jsx
+import { ExtendedMaterial } from "three-extended-material/react"
+import { MeshStandardMaterial } from 'three';
+
+function Box() {
+  return (
+    <mesh
+      <boxGeometry args={[1, 1, 1]} />
+      <ExtendedMaterial 
+        superMaterial={MeshStandardMaterial} 
+        extensions={[checkerBoardExtension]} 
+        color={0x00aaff}
+        checkersSize={8.0}
+      /> 
+    </mesh>
+  )
+}
+```
+In this case, just pass the ExtendedMaterial's parameters to as props to the component, in the classic react declarative style. Its properties will be updated reactively, and the Material will be re-created only if the `superMaterial` or its `extensions` changes.
+
 ## Demos
 
 - [three-extended-material/simple](https://leoncvlt.github.io/three-extended-material/simple/) - A demo of the checkerboard setup illustrated above
 - [three-extended-material/complex](https://leoncvlt.github.io/three-extended-material/complex/) - A more complex example with multiple toggleable extensions, editing properties in real-time and some interesting effects.
+- [three-extended-material/react](https://leoncvlt.github.io/three-extended-material/react/) - A demo of the checkerboard setup using `react-three-fiber`
 
 ## Support [![Buy me a coffee](https://img.shields.io/badge/-buy%20me%20a%20coffee-lightgrey?style=flat&logo=buy-me-a-coffee&color=FF813F&logoColor=white "Buy me a coffee")](https://www.buymeacoffee.com/leoncvlt)
 If this tool has proven useful to you, consider [buying me a coffee](https://www.buymeacoffee.com/leoncvlt) to support development of this and [many other projects](https://github.com/leoncvlt?tab=repositories).

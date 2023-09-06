@@ -1,4 +1,4 @@
-import "./styles.css";
+import "../styles.css";
 import {
   Clock,
   Color,
@@ -17,9 +17,8 @@ import {
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GUI } from "three/examples/jsm/libs/lil-gui.module.min.js";
-
 import { ExtendedMaterial } from "../../src/ExtendedMaterial";
-import { DitheredOpacity, RimGlow, Noise } from "./extensions";
+import { DitheredOpacity, RimGlow, Noise } from "../extensions";
 
 const renderer = new WebGLRenderer({
   canvas: document.querySelector("canvas"),

@@ -1,3 +1,4 @@
+import "../styles.css";
 import {
   BoxGeometry,
   Clock,
@@ -10,7 +11,7 @@ import {
 } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { ExtendedMaterial } from "../../src/ExtendedMaterial";
-import "./styles.css";
+import { Checkerboard } from "../extensions";
 
 const renderer = new WebGLRenderer({
   canvas: document.querySelector("canvas"),
@@ -27,31 +28,9 @@ const clock = new Clock();
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 
-const checkerBoardExtension = {
-  name: "checkerboard",
-  uniforms: {
-    checkersSize: 5,
-  },
-  fragmentShader: (shader) => {
-    shader = `
-      uniform float checkersSize;
-      ${shader.replace(
-        "#include <output_fragment>",
-        /*glsl*/ `
-        vec2 pos = floor(gl_FragCoord.xy / checkersSize);
-        float pattern = mod(pos.x + mod(pos.y, 2.0), 2.0);
-  
-        outgoingLight = outgoingLight * pattern;
-        #include <output_fragment>
-        `
-      )}
-    `;
-    return shader;
-  },
-};
 const material = new ExtendedMaterial(
   MeshStandardMaterial,
-  [checkerBoardExtension],
+  [Checkerboard],
   {
     color: 0x00aaff,
     checkersSize: 10.0,

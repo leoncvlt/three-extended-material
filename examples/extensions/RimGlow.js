@@ -28,12 +28,12 @@ export const RimGlow = {
       uniform vec3 glowColor;
       uniform float glowPower;
       ${shader.replace(
-        "#include <output_fragment>",
+        "#include <opaque_fragment>",
         /*glsl*/ `
         float rim = smoothstep(0.0, 1.0, pow(1.0 - dot(normal, normalize(vViewPosition)), glowPower));
   
         outgoingLight = outgoingLight + (rim * glowIntensity) * glowColor;
-        #include <output_fragment>
+        #include <opaque_fragment>
         `
       )}
     `;

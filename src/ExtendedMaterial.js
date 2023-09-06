@@ -88,8 +88,8 @@ export function ExtendedMaterial(
           shader.defines[define] = value;
         });
 
-        shader.vertexShader = extension.vertexShader(shader.vertexShader);
-        shader.fragmentShader = extension.fragmentShader(shader.fragmentShader);
+        shader.vertexShader = extension.vertexShader(shader.vertexShader, shader.shaderType);
+        shader.fragmentShader = extension.fragmentShader(shader.fragmentShader, shader.shaderType);
       });
 
       if (options.debug) {
