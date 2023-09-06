@@ -122,9 +122,9 @@ function Box() {
       <boxGeometry args={[1, 1, 1]} />
       <ExtendedMaterial 
         superMaterial={MeshStandardMaterial} 
-        extensions={[Checkerboard]} 
+        extensions={[checkerBoardExtension]} 
         color={0x00aaff}
-        checkersSize={checkersSize}
+        checkersSize={8.0}
       /> 
     </mesh>
   )
